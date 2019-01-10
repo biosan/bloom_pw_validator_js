@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script type="text/javascript" src="./bloom.js"></script>
+        <script type="text/javascript" src="./validator.js"></script>
+    </head>
+    <body>
+        <h1>Password</h1>
+        <div name="pwinfo" id="pwinfo"></div>
+        <input id="password"></input>
+
+        <script>
+            // This is the output of "builder.js"
+            // TODO: This must be compressed and encoded
+            data = '{"m":1024,"k":4,"n":5,"seeds":"313,274,655,112","bitset":"0,0,0,0,0,0,0,0,0,0,0,0,16,0,0,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,32,72,4,0,0,0,0,0,0,0,0,0,0,129,0,17,1,0,0,0,64,0,0,0,0,1,0,0,0,0,0,16,0,0,0,0,0,0,8,0,0,0,0,0,8,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,128,0"}\n'
+
+            // Getting the useful elements...
+            pw_info = document.getElementById("pwinfo")
+            pw_input = document.getElementById("password")
+
+            // The callback function for the validator.
+            // Must accept a single argument "valid : Boolean"
+            pw_validator_callback = function(valid) {
+                if (valid) {
+                    pw_info.innerHTML = "Good password!"
+                } else {
+                    pw_info.innerHTML = "Probably a bad password"
+                }
+            }
+            // Build the Bloom Filter using precomputed bitset and seeds
+            var bf = importBF(data)
+            // Create a new validator using the prevously created Bloom Filter.
+            // Also define the element to check and the callback function.
+            // (Will check if "element1.value" is inside the bloom filter
+            // and call "pw_validator_callback(true|false)")
+            var validator = buildBFValidator(importBF(data),
+                                 element1,
+                                 pw_validator_callback)
+            // Set element's "password" callback function
+            // for "onkeyup" event to our validator
+            document.getElementById("password").onkeyup = validator
+        </script>
+    </body>
+
+</html>

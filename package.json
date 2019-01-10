@@ -1,0 +1,24 @@
+{
+  "name": "bloom_pw_validator_js",
+  "version": "0.0.1",
+  "description": "Password Validator based on Bloom Filter",
+  "main": "bloom.js",
+  "dependencies": {
+    "jest": "^23.6.0",
+    "murmurhash3js": "^3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": "git+https://github.com/biosan/bloom_pw_validator_js.git",
+  "keywords": [
+    "bloomfiler"
+  ],
+  "author": "Alessandro Biondi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/biosan/bloom_pw_validator_js/issues"
+  },
+  "homepage": "https://github.com/biosan/bloom_pw_validator_js#readme"
+}
